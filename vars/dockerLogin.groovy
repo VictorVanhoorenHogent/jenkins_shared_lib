@@ -1,5 +1,5 @@
 def call (String hubUser, String hubAccessToken ) {
     sh """
-    docker login -u ${hubUser} -p ${hubAccessToken}
+    echo ${hubAccesstoken} | docker login -u ${hubUser} --password-stdin
     """
 }
